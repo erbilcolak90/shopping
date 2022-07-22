@@ -34,6 +34,7 @@ public class AddressManager implements AddressService {
             address.setDeleted(false);
             address.setUpdateDate(new Date());
 
+
             this.addressRepository.save(address);
 
             return new Result<>(true, "Address created", address);
@@ -48,7 +49,7 @@ public class AddressManager implements AddressService {
     public Result editAddress(String addressId,String country,String city,String description) {
         try {
             Address address = this.addressRepository.findById(addressId).orElseThrow();
-            if(address.isDeleted()==true){
+            if(address.isDeleted()==false){
                 address.setUpdateDate(new Date());
                 address.setCountry(country);
                 address.setCity(city);

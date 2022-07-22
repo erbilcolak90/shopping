@@ -5,13 +5,14 @@ import com.shopping.app.core.Result;
 import com.shopping.app.entities.Address;
 import com.shopping.app.entities.Product;
 import com.shopping.app.entities.User;
+import com.shopping.app.repositories.AddressRepository;
 import com.shopping.app.repositories.ProductRepository;
 import com.shopping.app.repositories.UserRepository;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,10 +23,13 @@ public class UserManager implements UserService {
     private UserRepository userRepository;
     private ProductRepository productRepository;
 
+    private AddressRepository addressRepository;
+
     @Autowired
-    public UserManager(UserRepository userRepository, ProductRepository productRepository) {
+    public UserManager(UserRepository userRepository, ProductRepository productRepository, AddressRepository addressRepository) {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.addressRepository = addressRepository;
     }
 
     //Post Mapping Methods
@@ -37,6 +41,8 @@ public class UserManager implements UserService {
             user.setUpdateDate(new Date());
             user.setDeleted(false);
             user.setFavoriteProductList(null);
+            user.setAddressesList(null);
+
             this.userRepository.save(user);
 
             return new Result(true, "User created", user);
@@ -51,11 +57,12 @@ public class UserManager implements UserService {
     public Result getUser(String userId) {
         try {
             User user = this.userRepository.findById(userId).orElseThrow();
+
             if(user.isDeleted()==true){
-                return new Result<>(true, "User info : ", user);
+                return new Result<>(false, "User not found : ", null);
             }
             else{
-                return new Result<>(false,"User not found",null);
+                return new Result<>(true,"User info :",user);
             }
 
         } catch (Exception ex) {
@@ -95,9 +102,16 @@ public class UserManager implements UserService {
     public Result<List<Address>> getAddresses(String userId) {
         try {
             User user = this.userRepository.findById(userId).orElseThrow();
-            List<Address> addressList = user.getAddressesList();
+            List<Address> addressList = this.addressRepository.findAll();
+            for(Address address: addressList){
+                if(address.getUserId().equals(userId)){
+                    user.getAddressesList().add(address);
+                }
+            }
 
-            return new Result<List<Address>>(true, "Address list", addressList);
+            this.userRepository.save(user);
+
+            return new Result<List<Address>> (true, "Address list",user.getAddressesList());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -149,13 +163,14 @@ public class UserManager implements UserService {
                 if(product.getId().equals(productItem.getId())){
                     return new Result<>(false,"The product is already in your favourites.",null);
                 }
+                else if(productList == null){
+                    productList.add(product);
+                    user.setUpdateDate(new Date());
+                    this.userRepository.save(user);
+                    return new Result(true, "Product added your favorite list", product);
+                }
 
             }
-            productList.add(product);
-            user.setUpdateDate(new Date());
-            this.userRepository.save(user);
-            return new Result(true, "Product added your favorite list", product);
-
 
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -40,7 +40,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/addProductToShoppingCart")
-    public Result addProductToShoppingCart(String shoppingCartId, String productId, int count) {
+    public Result addProductToShoppingCart(@RequestParam String shoppingCartId,@RequestParam String productId, @RequestParam int count) {
         return this.shoppingCartService.addProductToShoppingCart(shoppingCartId, productId, count);
     }
 

@@ -36,11 +36,12 @@ public class ShoppingCartManager implements ShoppingCartService {
         try {
             User user = this.userRepository.findById(shoppingCart.getUserId()).orElseThrow();
             if(shoppingCart.getUserId().isEmpty()){
+
                 this.shoppingCartRepository.save(shoppingCart);
-                return new Result<>(true,"Shopping Cart is ready",null);
+                return new Result<>(true,"Shopping Cart is ready",shoppingCart);
             }
             else{
-                return new Result<>(false,"You already have a shopping cart and shopping cart Id :",shoppingCart.getId());
+                return new Result<>(false,"You already have a shopping cart and shopping cart Id :",shoppingCart);
             }
 
         } catch (Exception ex) {
