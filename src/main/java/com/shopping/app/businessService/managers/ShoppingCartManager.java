@@ -102,23 +102,12 @@ public class ShoppingCartManager implements ShoppingCartService {
             ShoppingCart shoppingCart = this.shoppingCartRepository.findById(shoppingCartId).orElseThrow();
             Product product = this.productRepository.findById(productId).orElseThrow();
 
-            for (Product productItem : shoppingCart.getShoppingCartProductList()) {
-                if (productItem.getId().equals(productId)) {
                     for (int i = 0; i <= count; i++) {
                         shoppingCart.getShoppingCartProductList().add(product);
                         shoppingCart.setTotal(shoppingCart.calculateTotal());
                         this.shoppingCartRepository.save(shoppingCart);
                     }
-                    return new Result<>(true, "This product(s) is already available and product quantity has been increased", null);
-                } else {
-                    for (int i = 0; i <= count; i++) {
-                        shoppingCart.getShoppingCartProductList().add(product);
-                        shoppingCart.setTotal(shoppingCart.calculateTotal());
-                        this.shoppingCartRepository.save(shoppingCart);
-                    }
-                    return new Result<>(true, "Product(s) is added your cart", null);
-                }
-            }
+            return new Result<>(true, "Product(s) is added your cart", null);
 
         } catch (Exception ex) {
             ex.printStackTrace();
