@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @GetMapping("/getFavoriteProductList")
-    public Result<List<Product>> getFavoriteProductList(@RequestParam String userId){
+    public Result<List<String>> getFavoriteProductList(@RequestParam String userId){
         return this.userService.getFavoriteProductList(userId);
     }
 

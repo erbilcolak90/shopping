@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @AllArgsConstructor
@@ -27,6 +29,8 @@ public class User {
     @NotBlank(message = "password is mandatory")
     private String password;
     private String email;
-    private List<Address> addressesList;
-    private List<Product> favoriteProductList;
+    private boolean shoppingCart;
+    private List<Address> addressesList = new ArrayList<Address>();
+    private List<String> favoriteProductList = new ArrayList<String>();
+
 }

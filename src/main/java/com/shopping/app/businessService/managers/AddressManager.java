@@ -34,8 +34,9 @@ public class AddressManager implements AddressService {
             address.setDeleted(false);
             address.setUpdateDate(new Date());
 
-
             this.addressRepository.save(address);
+            user.getAddressesList().add(address);
+            this.userRepository.save(user);
 
             return new Result<>(true, "Address created", address);
 

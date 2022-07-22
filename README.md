@@ -22,10 +22,11 @@ It is the class created for the user in the system.
 - createDate : `Date`
 - updateDate : `Date`
 - isDeleted : `boolean`
-- name : ``name``
-- surname : ``surname``
-- password : ``password``
-- email : ``email``
+- name : ``String``
+- surname : ``String``
+- password : ``String``
+- email : ``String``
+- shoppingCart : ``boolean``
 - addressesList : ``List<Address>``
 - favoriteProductList : ``List<Product>``
 
@@ -47,10 +48,10 @@ It is the class created for the product in the system.
 - createDate : `Date`
 - updateDate : `Date`
 - isDeleted : `boolean`
-- categoryId : ``categoryId``
-- name : ``name``
+- categoryId : ``String``
+- name : ``String``
 - price : ``int``
-- description : ``description``
+- description : ``String``
 
 ### Order
 
@@ -79,7 +80,7 @@ It is the class created for the Category in the system.
 - createDate : `Date`
 - updateDate : `Date`
 - isDeleted : `boolean`
-- name : ``name``
+- name : ``String``
 - parentCategoryId : ``String``
 
 _Note:_ A parent category was used instead of a subcategory to categorize the products.
@@ -140,8 +141,9 @@ requestBody: {
         "surname": "colak",
         "password": "12345",
         "email": "erbilcolak@gmail.com",
-        "addressesList": null,
-        "favoriteProductList": null,
+        "shoppingCart": false,
+        "addressesList": [],
+        "favoriteProductList": [],
         "deleted": false
     }
 }
@@ -175,8 +177,9 @@ requestBody: -
         "surname": "adıvar",
         "password": "12345",
         "email": "halideedip@gmail.com",
-        "addressesList": null,
-        "favoriteProductList": null,
+        "shoppingCart": false,
+        "addressesList": [],
+        "favoriteProductList": [],
         "deleted": false
     }
 }
@@ -210,8 +213,9 @@ requestBody: -
             "surname": "colak",
             "password": "12345",
             "email": "erbilcolak@gmail.com",
-            "addressesList": null,
-            "favoriteProductList": null,
+            "shoppingCart": false,
+            "addressesList": [],
+            "favoriteProductList": [],
             "deleted": false
         },
         ...
@@ -248,7 +252,7 @@ requestBody: -
             "categoryId": 2,
             "name": "Mercedes e250",
             "price" : 50000,
-            "description" : ""
+            "description" : "sahibinden temiz araç"
            
         },
         ...
@@ -275,20 +279,20 @@ requestBody: -
 ````
 {
     "success": true,
-    "message": "Address List",
+    "message": "Address list",
     "data": [
         {
-        "id": "62da7b8c265fa808f980eb14",
-        "createDate": "2022-07-20T10:27:24.837+00:00",
-        "updateDate": "2022-07-20T10:27:24.837+00:00",
-        "name": "ev",
-        "country": "TR",
-        "city": "istanbul",
-        "description": "kartal",
-        "userId": "62d93afabd9a2259782f8434",
-        "deleted": false
+            "id": "62dace1e78a7907c81532739",
+            "createDate": "2022-07-22T16:19:42.167+00:00",
+            "updateDate": "2022-07-22T16:19:42.167+00:00",
+            "name": "ev Melih Cevdet",
+            "country": "TR",
+            "city": "istanbul",
+            "description": "kadıköy",
+            "userId": "62dace0978a7907c81532738",
+            "deleted": false
         },
-        ...
+      ...
     ]
 }
 ````
@@ -425,11 +429,11 @@ requestBody:{
 ````
 {
     "success": true,
-    "message": "Shopping Cart is ready :",
+    "message": "Shopping Cart is ready",
     "data": {
-        "id": 1,
-        "userId": "2",
-        "shoppingCartProductList": null,
+        "id": "62db0ba90eaf3a282c22aa03",
+        "userId": "62db0b9c0eaf3a282c22aa02",
+        "shoppingCartProductList": [],
         "total": 0
     }
 }
@@ -466,6 +470,7 @@ requestBody: -
             "description": "sahibinden temiz araç",
             "deleted": false
         }
+        ...
         ]
 }
 ````

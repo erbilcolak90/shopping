@@ -35,13 +35,16 @@ public class ShoppingCartManager implements ShoppingCartService {
     public Result createShoppingCart(ShoppingCart shoppingCart) {
         try {
             User user = this.userRepository.findById(shoppingCart.getUserId()).orElseThrow();
-            if(shoppingCart.getUserId().isEmpty()){
 
+            if(!user.isShoppingCart()){
+                user.setShoppingCart(true);
                 this.shoppingCartRepository.save(shoppingCart);
+                this.userRepository.save(user);
+
                 return new Result<>(true,"Shopping Cart is ready",shoppingCart);
             }
             else{
-                return new Result<>(false,"You already have a shopping cart and shopping cart Id :",shoppingCart);
+                return new Result<>(true,"You already have a shopping cart and shopping cart Id :",shoppingCart.getId());
             }
 
         } catch (Exception ex) {
@@ -55,9 +58,8 @@ public class ShoppingCartManager implements ShoppingCartService {
     public Result<List<Product>> getShoppingCartProductList(String shoppingCartId) {
         try {
             ShoppingCart shoppingCart = this.shoppingCartRepository.findById(shoppingCartId).orElseThrow();
-            List<Product> productList = shoppingCart.getShoppingCartProductList();
 
-            return new Result<>(true,"Shopping Cart Product List : ",productList);
+            return new Result<>(true,"Shopping Cart Product List : ",shoppingCart.getShoppingCartProductList());
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -98,20 +100,19 @@ public class ShoppingCartManager implements ShoppingCartService {
     public Result addProductToShoppingCart(String shoppingCartId, String productId, int count) {
         try {
             ShoppingCart shoppingCart = this.shoppingCartRepository.findById(shoppingCartId).orElseThrow();
-            List<Product> productList = shoppingCart.getShoppingCartProductList();
             Product product = this.productRepository.findById(productId).orElseThrow();
 
-            for (Product productItem : productList) {
+            for (Product productItem : shoppingCart.getShoppingCartProductList()) {
                 if (productItem.getId().equals(productId)) {
                     for (int i = 0; i <= count; i++) {
-                        productList.add(product);
+                        shoppingCart.getShoppingCartProductList().add(product);
                         shoppingCart.setTotal(shoppingCart.calculateTotal());
                         this.shoppingCartRepository.save(shoppingCart);
                     }
                     return new Result<>(true, "This product(s) is already available and product quantity has been increased", null);
                 } else {
                     for (int i = 0; i <= count; i++) {
-                        productList.add(product);
+                        shoppingCart.getShoppingCartProductList().add(product);
                         shoppingCart.setTotal(shoppingCart.calculateTotal());
                         this.shoppingCartRepository.save(shoppingCart);
                     }

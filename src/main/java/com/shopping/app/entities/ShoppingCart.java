@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class ShoppingCart {
     private String id;
     @NotEmpty
     private String userId;
-    private List<Product> shoppingCartProductList;
+    private List<Product> shoppingCartProductList = new ArrayList<Product>();
     private int total;
 
     public int calculateTotal(){

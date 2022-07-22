@@ -15,7 +15,7 @@ public interface UserService{
 
     Result<List<User>> getAllUsers();
 
-    Result<List<Product>> getFavoriteProductList(String userId);
+    Result<List<String>> getFavoriteProductList(String userId);
 
     Result<List<Address>> getAddresses(String userId);
 
