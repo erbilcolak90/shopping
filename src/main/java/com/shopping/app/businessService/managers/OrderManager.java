@@ -37,10 +37,14 @@ public class OrderManager implements OrderService {
 
     //Post methods
     @Override
-    public Result createOrder(String shoppingCartId) {
+    public Result createOrder(String shoppingCartId,String deliveryAddressId,String invoiceAddressId) {
         try {
             ShoppingCart shoppingCart = this.shoppingCartRepository.findById(shoppingCartId).orElseThrow();
-            Order order = this.orderRepository.findById(shoppingCartId).orElseGet(Order::new);
+            Order order = new Order();
+            order.setShoppingCartId(shoppingCartId);
+            order.setUserId(shoppingCart.getUserId());
+            order.setDeliveryAddressId(deliveryAddressId);
+            order.setInvoiceAddressId(invoiceAddressId);
             order.setCreateDate(new Date());
             order.setUpdateDate(new Date());
             order.setDeleted(false);
@@ -49,17 +53,21 @@ public class OrderManager implements OrderService {
             order.productPriceTotal();
             if(order.productPriceTotal()>499 || order.productPriceTotal() <= 1000){
                 order.setDiscountTotal(order.discount());
+                this.orderRepository.save(order);
                 return new Result<>(true,"You have extra discount % 10...fill cart get more discount",order);
             }
             else if(order.productPriceTotal()>1000 || order.productPriceTotal() <=2000){
                 order.setDiscountTotal(order.discount());
+                this.orderRepository.save(order);
                 return new Result<>(true,"You have extra discount %15...fill cart get more discount",order);
             }
             else if(order.productPriceTotal()>2000){
                 order.setDiscountTotal(order.discount());
+                this.orderRepository.save(order);
                 return new Result<>(true,"You have extra discount %20...don't miss out",order);
             }
             else{
+                this.orderRepository.save(order);
                 return new Result<>(true,"Complete the shopping cart for 500$, get 10% discount instantly",order);
             }
 
@@ -115,6 +123,7 @@ public class OrderManager implements OrderService {
     public Result completeOrder(String orderId) {
         try{
             Order order = this.orderRepository.findById(orderId).orElseThrow();
+
             if(order.isDeleted()==true){
                 order.setDeleted(false);
             }
@@ -134,6 +143,11 @@ public class OrderManager implements OrderService {
     public Result cancelOrder(String orderId) {
         try{
             Order order = this.orderRepository.findById(orderId).orElseThrow();
+
+            if(order.getStatus().equals(Enums.SUCCESS.toString())){
+
+                return new Result<>(true,"completed order cannot be canceled",null);
+            }
             order.setStatus(Enums.FAILED.toString());
             order.setDeleted(true);
             order.setUpdateDate(new Date());

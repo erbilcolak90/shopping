@@ -22,8 +22,8 @@ public class OrderController {
     }
 
     @PostMapping("/createOrder")
-    public Result createOrder(String shoppingCartId){
-        return this.orderService.createOrder(shoppingCartId);
+    public Result createOrder(@RequestParam String shoppingCartId,@RequestParam String deliveryAddressId,@RequestParam String invoiceAddressId){
+        return this.orderService.createOrder(shoppingCartId, deliveryAddressId, invoiceAddressId);
     }
 
     @GetMapping("/getOrderProductList")

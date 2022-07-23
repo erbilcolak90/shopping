@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    Result createOrder(String shoppingCartId);
+    Result createOrder(String shoppingCartId,String deliveryAddressId,String invoiceAddressId);
 
     Result<List<Product>> getOrderProductList(String orderId);
 

@@ -765,7 +765,7 @@ requestBody: -
 method: POST
 url: /order/createOrder
 requestSample: http://localhost:8080/createOrder
-requestParams: shoppingCartId
+requestParams: shoppingCartId : String, delivieryAddressId : String, invoiceAddressId : String
 requestBody: -
 
 ````
@@ -775,23 +775,33 @@ requestBody: -
 ````
 {
     "success": true,
-    "message": "You have extra discount --...fill cart get mode discount",
-    "data": [ {
-            "id": "1",
-            "createDate": "2022-07-19T12:09:21.945+00:00",
-            "updateDate": "2022-07-21T12:09:21.945+00:00",
-            "discountTotal": "10000",
-            "shoppingCartId": "1",
-            "userId": 2,
-            "deliveryAddressId": "2",
-            "invoiceAddressId" : "2",
-            "status" : "SUCCESS"
-        }
-        
-    ]
+    "message": "You have extra discount % 10...fill cart get more discount",
+    "data": {
+        "id": "62dc033b2f699e722b6417e3",
+        "createDate": "2022-07-23T14:18:35.799+00:00",
+        "updateDate": "2022-07-23T14:18:35.799+00:00",
+        "orderProductList": [
+            {
+                "id": "62daff54d1ba7f5818dbfaed",
+                "createDate": "2022-07-22T19:49:40.389+00:00",
+                "updateDate": "2022-07-22T19:49:40.389+00:00",
+                "categoryId": "62d9412ddf77443e0cbc12e6",
+                "name": "seat cordoba",
+                "price": 20000,
+                "description": "temiz araç",
+                "deleted": false
+            },
+            ...
+        ],
+        "discountTotal": 8000.0,
+        "shoppingCartId": "62db15260fca4522e35f8050",
+        "userId": "62db151b0fca4522e35f804f",
+        "deliveryAddressId": "62dbff80d84cc70d2ca70216",
+        "invoiceAddressId": "62dbff80d84cc70d2ca70216",
+        "status": "WAITING",
+        "deleted": false
+    }
 }
-
-
 ````
 
 ---
