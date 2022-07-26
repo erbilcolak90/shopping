@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,8 +60,18 @@ public class ProductManager implements ProductService {
 
     @Override
     public Result<List<Product>> getAllProduct() {
+
         try {
-            return new Result<>(true, "Products listed ", this.productRepository.findAll());
+
+            List<Product> productList = this.productRepository.findAll();
+            List<Product> products = new ArrayList<Product>();
+            for(Product productItem: productList){
+                //deleted products are not listed
+                if(productItem.isDeleted()==false){
+                    products.add(productItem);
+                }
+            }
+            return new Result<>(true, "Products listed ", products);
 
         } catch (Exception ex) {
             ex.printStackTrace();

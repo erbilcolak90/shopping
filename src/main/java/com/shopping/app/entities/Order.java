@@ -38,7 +38,6 @@ public class Order {
         int productPriceTotal =0;
         for(Product productItem: orderProductList){
             productPriceTotal = productPriceTotal+productItem.getPrice();
-
         }
         return productPriceTotal;
     }

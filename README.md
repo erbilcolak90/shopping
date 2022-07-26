@@ -187,6 +187,279 @@ requestBody: -
 
 ---
 
+## FindByName
+
+_Note_: Method fields (name,surname and email)
+
+### Request
+````
+method: GET
+url: /user/findByName
+requestSample: http://localhost:8080/user/findByName
+requestParams: name: String
+requestBody: -
+
+````
+
+### Response
+````
+{
+    "success": true,
+    "message": "data listed",
+    "data": [
+        {
+            "id": "62db0b9c0eaf3a282c22aa02",
+            "createDate": null,
+            "updateDate": null,
+            "name": "cahit",
+            "surname": "arf",
+            "password": null,
+            "email": "cahit@gmail.com",
+            "shoppingCart": false,
+            "addressesList": [],
+            "favoriteProductList": [],
+            "deleted": false
+        },
+        ...
+    ]
+}
+````
+
+---
+
+## FindByNameSortByEmailDesc
+
+_Note_: Method fields is (name,favoriteProductList,)
+
+### Request
+````
+method: GET
+url: /user/findByNameSortByEmailDesc
+requestSample: http://localhost:8080/user/findByNameSortByEmailDesc
+requestParams: name : String
+requestBody: -
+
+````
+
+### Response
+````
+{
+    "success": true,
+    "message": "Data Listed ",
+    "data": [
+       
+        {
+            "id": "62def38d3816b23ea8b3dd55",
+            "createDate": null,
+            "updateDate": null,
+            "name": "cahit",
+            "surname": null,
+            "password": null,
+            "email": null,
+            "shoppingCart": false,
+            "addressesList": [],
+            "favoriteProductList": [
+                {
+                    "id": "62dc17edcf4cc45323bec79c",
+                    "createDate": "2022-07-23T15:46:53.923+00:00",
+                    "updateDate": "2022-07-23T15:54:43.625+00:00",
+                    "categoryId": "62dc17c9cf4cc45323bec79b",
+                    "name": "uzun kollo polo",
+                    "price": 250,
+                    "description": "polo yaka",
+                    "deleted": false
+                }
+            ],
+            "deleted": false
+        },
+     ...
+    ]
+}
+````
+
+---
+
+## FindByNameSortByEmailAsc
+
+_Note_: Method fields is (name,favoriteProductList,)
+
+### Request
+````
+method: GET
+url: /user/findByNameSortByEmailAsc
+requestSample: http://localhost:8080/user/findByNameSortByEmailAsc
+requestParams: name : String
+requestBody: -
+
+````
+
+### Response
+````
+{
+    "success": true,
+    "message": "Data Listed ",
+    "data": [
+       
+        {
+            "id": "62def38d3816b23ea8b3dd55",
+            "createDate": null,
+            "updateDate": null,
+            "name": "cahit",
+            "surname": null,
+            "password": null,
+            "email": null,
+            "shoppingCart": false,
+            "addressesList": [],
+            "favoriteProductList": [
+                {
+                    "id": "62dc17edcf4cc45323bec79c",
+                    "createDate": "2022-07-23T15:46:53.923+00:00",
+                    "updateDate": "2022-07-23T15:54:43.625+00:00",
+                    "categoryId": "62dc17c9cf4cc45323bec79b",
+                    "name": "uzun kollo polo",
+                    "price": 250,
+                    "description": "polo yaka",
+                    "deleted": false
+                }
+            ],
+            "deleted": false
+        },
+     ...
+    ]
+}
+````
+
+---
+
+## FindByNameAndSurname
+
+_Notes_: Method sort = 'surname' : -1
+
+### Request
+````
+method: GET
+url: /user/findByNameAndSurname
+requestSample: http://localhost:8080/user/findByNameAndSurname
+requestParams: name : String
+requestBody: -
+
+````
+
+### Response
+````
+{
+    "success": true,
+    "message": "Data Listed :",
+    "data": [
+        {
+            "id": "62def05ab6d11154997a3670",
+            "createDate": "2022-07-25T19:34:50.781+00:00",
+            "updateDate": "2022-07-25T19:34:50.781+00:00",
+            "name": "cahit",
+            "surname": "yalçın",
+            "password": "12345",
+            "email": "cahityalcin@gmail.com",
+            "shoppingCart": false,
+            "addressesList": [],
+            "favoriteProductList": [],
+            "deleted": false
+        },
+        {
+            "id": "62debb6368e84c5d099ed94b",
+            "createDate": "2022-07-25T15:48:51.466+00:00",
+            "updateDate": "2022-07-26T17:43:03.205+00:00",
+            "name": "cahit",
+            "surname": "sami",
+            "password": "12345",
+            "email": "cahisami@gmail.com",
+            "shoppingCart": false,
+            "addressesList": [],
+            "favoriteProductList": [
+                {
+                    "id": "62dc17edcf4cc45323bec79c",
+                    "createDate": "2022-07-23T15:46:53.923+00:00",
+                    "updateDate": "2022-07-23T15:54:43.625+00:00",
+                    "categoryId": "62dc17c9cf4cc45323bec79b",
+                    "name": "uzun kollo polo",
+                    "price": 250,
+                    "description": "polo yaka",
+                    "deleted": false
+                }
+            ],
+            "deleted": false
+        },
+        ...
+    ]
+}
+````
+
+---
+
+## PageableUser
+
+### Request
+````
+method: GET
+url: /user/pageableUser
+requestSample: http://localhost:8080/user/pageableUser
+requestParams: -
+requestBody: -
+
+````
+
+### Response
+````
+{
+    "success": true,
+    "message": "Data Listed",
+    "data": {
+        "content": [
+            {
+                "id": "62def58cd964a51ef227882c",
+                "createDate": "2022-07-25T19:57:00.445+00:00",
+                "updateDate": "2022-07-25T19:57:00.445+00:00",
+                "name": "cahit",
+                "surname": "kuzhun",
+                "password": "12345",
+                "email": "cahitkuzhun@gmail.com",
+                "shoppingCart": false,
+                "addressesList": [],
+                "favoriteProductList": [],
+                "deleted": false
+            },
+            ...
+        ],
+        "pageable": {
+            "sort": {
+                "empty": false,
+                "sorted": true,
+                "unsorted": false
+            },
+            "offset": 6,
+            "pageNumber": 2,
+            "pageSize": 3,
+            "unpaged": false,
+            "paged": true
+        },
+        "last": false,
+        "totalElements": 15,
+        "totalPages": 5,
+        "size": 3,
+        "number": 2,
+        "sort": {
+            "empty": false,
+            "sorted": true,
+            "unsorted": false
+        },
+        "first": false,
+        "numberOfElements": 3,
+        "empty": false
+    }
+}
+````
+
+---
+
 ## Get All User
 
 ### Request

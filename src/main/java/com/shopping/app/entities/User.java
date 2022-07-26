@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 @AllArgsConstructor
@@ -31,6 +30,6 @@ public class User {
     private String email;
     private boolean shoppingCart;
     private List<Address> addressesList = new ArrayList<Address>();
-    private List<String> favoriteProductList = new ArrayList<String>();
+    private List<Product> favoriteProductList = new ArrayList<Product>();
 
 }

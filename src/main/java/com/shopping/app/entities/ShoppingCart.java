@@ -22,6 +22,7 @@ public class ShoppingCart {
     @NotEmpty
     private String userId;
     private List<Product> shoppingCartProductList = new ArrayList<Product>();
+
     private int total;
 
     public int calculateTotal(){
@@ -30,6 +31,13 @@ public class ShoppingCart {
             total = total+cartItem.getPrice();
         }
         return total;
+    }
+
+    public boolean resetShoppingCart(){
+        setShoppingCartProductList(new ArrayList<Product>());
+        setTotal(0);
+
+        return true;
     }
 
 }

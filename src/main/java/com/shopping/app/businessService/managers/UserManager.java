@@ -10,6 +10,7 @@ import com.shopping.app.repositories.ProductRepository;
 import com.shopping.app.repositories.UserRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -70,10 +71,60 @@ public class UserManager implements UserService {
     }
 
     @Override
+    public Result<List<User>> findByName(String name) {
+        try {
+            return new Result<>(true, "data listed", this.userRepository.findByName(name));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Result<List<User>> findByNameSortByEmailDesc(String name) {
+        try {
+            return new Result<List<User>>(true, "Data Listed ", this.userRepository.findByNameSortByEmailDesc(name));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Result<List<User>> findByNameSortByEmailAsc(String name) {
+        try {
+            return new Result<List<User>>(true, "Data Listed :", this.userRepository.findByNameSortByEmailAsc(name));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Result<List<User>> findByNameAndSurname(String name) {
+        try {
+            return new Result<List<User>>(true, "Data Listed :", this.userRepository.findByNameAndSurname(name));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Result<Page<User>> pageableUser(int pageNumber, int pageSize) {
+        try {
+            Pageable pageable = PageRequest.of(pageNumber,pageSize, Sort.by(Sort.Direction.ASC,"name"));
+            return new Result<Page<User>>(true,"Data Listed",this.userRepository.findAll(pageable));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Result<List<User>> getAllUsers() {
         try {
             List<User> userList = (List<User>) this.userRepository.findAll();
-
 
             return new Result<List<User>>(true, "Users List", userList);
         } catch (Exception ex) {
@@ -83,11 +134,11 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public Result<List<String>> getFavoriteProductList(String userId) {
+    public Result<List<Product>> getFavoriteProductList(String userId) {
         try {
             User user = this.userRepository.findById(userId).orElseThrow();
 
-            return new Result<List<String>>(true, "Favorite product list :", user.getFavoriteProductList());
+            return new Result<List<Product>>(true, "Favorite product list :", user.getFavoriteProductList());
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -117,13 +168,13 @@ public class UserManager implements UserService {
     }
 
     //Put Mapping Methods
-
     @Override
     public Result changePassword(String userId, String currentPassword, String newPassword) {
         try {
             User user = this.userRepository.findById(userId).orElseThrow();
             if (user.getPassword().equals(currentPassword)) {
                 user.setUpdateDate(new Date());
+                user.setPassword(newPassword);
                 this.userRepository.save(user);
                 return new Result(true, "password changed", null);
             } else {
@@ -150,24 +201,22 @@ public class UserManager implements UserService {
         return null;
     }
 
+
     @Override
     public Result addToFavoriteList(String userId, String productId) {
         try {
             User user = this.userRepository.findById(userId).orElseThrow();
             Product product = this.productRepository.findById(productId).orElseThrow();
 
-            for(String productItem: user.getFavoriteProductList()){
-                if(productItem.equals(productId)){
-                    return new Result<>(false, "The product is already in your favourites.", null);
-                }
-
-                else {
-                    user.getFavoriteProductList().add(productItem);
-                    user.setUpdateDate(new Date());
-                    this.userRepository.save(user);
-                    return new Result(true, "Product added your favorite list", null);
-                }
+            if (user.getFavoriteProductList().contains(product)) {
+                return new Result(false, "The product is already in your favourites.", product);
+            } else {
+                user.getFavoriteProductList().add(product);
+                user.setUpdateDate(new Date());
+                this.userRepository.save(user);
+                return new Result(true, "Product added your favorite list", product);
             }
+
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -182,7 +231,6 @@ public class UserManager implements UserService {
             User user = this.userRepository.findById(userId).orElseThrow();
             user.setDeleted(true);
             user.setUpdateDate(new Date());
-
             this.userRepository.save(user);
 
             return new Result<>(true, "User deleted", null);

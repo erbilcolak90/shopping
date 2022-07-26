@@ -50,24 +50,19 @@ public class OrderManager implements OrderService {
             order.setDeleted(false);
             order.setStatus(Enums.WAITING.toString());
             order.setOrderProductList(shoppingCart.getShoppingCartProductList());
-            order.productPriceTotal();
-            if(order.productPriceTotal()>499 || order.productPriceTotal() <= 1000){
-                order.setDiscountTotal(order.discount());
-                this.orderRepository.save(order);
-                return new Result<>(true,"You have extra discount % 10...fill cart get more discount",order);
-            }
-            else if(order.productPriceTotal()>1000 || order.productPriceTotal() <=2000){
-                order.setDiscountTotal(order.discount());
-                this.orderRepository.save(order);
-                return new Result<>(true,"You have extra discount %15...fill cart get more discount",order);
-            }
-            else if(order.productPriceTotal()>2000){
-                order.setDiscountTotal(order.discount());
-                this.orderRepository.save(order);
-                return new Result<>(true,"You have extra discount %20...don't miss out",order);
+
+            order.setDiscountTotal(order.discount());
+
+            /*
+            TODO: productPricetotal de if koşullarını baz almıyor.
+             */
+
+            if(order.getDiscountTotal()>500){
+                this.orderRepository.insert(order);
+                return new Result<>(true,"You have extra discount " +order.getDiscountTotal()+ " Your shopping cart total amount " + order.productPriceTotal() ,order);
             }
             else{
-                this.orderRepository.save(order);
+                this.orderRepository.insert(order);
                 return new Result<>(true,"Complete the shopping cart for 500$, get 10% discount instantly",order);
             }
 
@@ -129,6 +124,8 @@ public class OrderManager implements OrderService {
             }
             order.setStatus(Enums.SUCCESS.toString());
             order.setUpdateDate(new Date());
+            ShoppingCart shoppingCart = this.shoppingCartRepository.findById(order.getShoppingCartId()).orElseThrow();
+            shoppingCart.resetShoppingCart();
             this.orderRepository.save(order);
 
             return new Result<>(true,"Order completed",null);

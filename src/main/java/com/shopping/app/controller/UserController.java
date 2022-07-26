@@ -1,5 +1,6 @@
 package com.shopping.app.controller;
 
+import com.shopping.app.businessService.AddressService;
 import com.shopping.app.businessService.ProductService;
 import com.shopping.app.businessService.UserService;
 import com.shopping.app.core.Result;
@@ -9,6 +10,7 @@ import com.shopping.app.entities.User;
 import com.shopping.app.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +25,13 @@ public class UserController {
 
     private ProductService productService;
 
-    private AddressRepository addressRepository;
+    private AddressService addressService;
 
     @Autowired
-    public UserController(UserService userService, ProductService productService, AddressRepository addressRepository) {
+    public UserController(UserService userService, ProductService productService, AddressService addressService) {
         this.userService = userService;
         this.productService = productService;
-        this.addressRepository = addressRepository;
+        this.addressService = addressService;
     }
 
     @PostMapping("/createUser")
@@ -42,13 +44,38 @@ public class UserController {
         return this.userService.getUser(userId);
     }
 
+    @GetMapping("/findByName")
+    public Result<List<User>> findByName(@RequestParam String name){
+        return this.userService.findByName(name);
+    }
+
+    @GetMapping("/findByNameSortByEmailDesc")
+    public Result<List<User>> findByNameSortByEmailDesc(@RequestParam String name){
+        return this.userService.findByNameSortByEmailDesc(name);
+    }
+
+    @GetMapping("/findByNameSortByEmailAsc")
+    public Result<List<User>> findByNameSortByEmailAsc(@RequestParam String name){
+        return this.userService.findByNameSortByEmailAsc(name);
+    }
+
+    @GetMapping("/findByNameAndSurname")
+    public Result<List<User>> findByNameAndSurname(@RequestParam String name){
+        return this.userService.findByNameAndSurname(name);
+    }
+
+    @GetMapping("/pageableUser")
+    public Result<Page<User>> pageableUser(@RequestParam int pageNumber,@RequestParam int pageSize){
+        return this.userService.pageableUser(pageNumber, pageSize);
+    }
+
     @GetMapping("/getAllUsers")
     public Result<List<User>> getAllUsers(){
         return this.userService.getAllUsers();
     }
 
     @GetMapping("/getFavoriteProductList")
-    public Result<List<String>> getFavoriteProductList(@RequestParam String userId){
+    public Result<List<Product>> getFavoriteProductList(@RequestParam String userId){
         return this.userService.getFavoriteProductList(userId);
     }
 

@@ -44,6 +44,9 @@ public class ShoppingCartManager implements ShoppingCartService {
                 return new Result<>(true,"Shopping Cart is ready",shoppingCart);
             }
             else{
+                /*
+                TODO: burda shopping cart ID si null dönüyor dönmemesi lazım
+                 */
                 return new Result<>(true,"You already have a shopping cart and shopping cart Id :",shoppingCart.getId());
             }
 
@@ -102,7 +105,7 @@ public class ShoppingCartManager implements ShoppingCartService {
             ShoppingCart shoppingCart = this.shoppingCartRepository.findById(shoppingCartId).orElseThrow();
             Product product = this.productRepository.findById(productId).orElseThrow();
 
-                    for (int i = 0; i <= count; i++) {
+                    for (int i = 0; i < count; i++) {
                         shoppingCart.getShoppingCartProductList().add(product);
                         shoppingCart.setTotal(shoppingCart.calculateTotal());
                         this.shoppingCartRepository.save(shoppingCart);
