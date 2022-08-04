@@ -5,6 +5,14 @@ and description of the products they will put on sale. It can create a favorite 
 Users must specify order address and billing address. They can create an order and complete the shopping. 
 It offers additional discounts to encourage shopping during order completion.
 
+### Information
+- This project deployed from heroku.The project database uses mongoDB Atlas.
+- Project database an open to request.
+- If you run this project your localhost; you must be edit to postman url area.
+
+---
+
+
 ## Entities
 
 - User
