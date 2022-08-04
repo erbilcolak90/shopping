@@ -1,0 +1,1087 @@
+{
+  "info": {
+    "_postman_id": "9674daac-db43-4c4f-9937-29ab86e8de88",
+    "name": "Shopping",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20470163"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "createUser",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"cahit\",\r\n    \"surname\": \"talat\",\r\n    \"password\": \"12345\",\r\n    \"email\": \"cahitkuzhun@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/createUser",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "createUser"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUser",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/getUser?userId=62def38d3816b23ea8b3dd55",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "getUser"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "62def38d3816b23ea8b3dd55"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "findByName",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/findByName?name=cahit",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "findByName"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "cahit"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "findByNameSortByEmailDesc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/findByNameSortByEmailDesc?name=cahit",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "findByNameSortByEmailDesc"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "cahit"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "findByNameSortByEmailAsc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/findByNameSortByEmailAsc?name=cahit",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "findByNameSortByEmailAsc"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "cahit"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "findByNameAndSurname",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/findByNameAndSurname?name=cahit",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "findByNameAndSurname"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "cahit"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "pageableUser",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/pageableUser?pageNumber=2&pageSize=3",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "pageableUser"
+              ],
+              "query": [
+                {
+                  "key": "pageNumber",
+                  "value": "2"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllUsers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/user/getAllUsers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "getAllUsers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getFavoriteProductList",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/getFavoriteProductList?userId=62dace0978a7907c81532738",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "getFavoriteProductList"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "62dace0978a7907c81532738"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAddresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/getAddresses?userId=62dace0978a7907c81532738",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "getAddresses"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "62dace0978a7907c81532738"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "changePassword",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/changePassword?userId=62def38d3816b23ea8b3dd55&currentPassword=1234&newPassword=123456",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "changePassword"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "62def38d3816b23ea8b3dd55"
+                },
+                {
+                  "key": "currentPassword",
+                  "value": "1234"
+                },
+                {
+                  "key": "newPassword",
+                  "value": "123456"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "changeEmail",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/changeEmail?userId=62dac0174c0715323e193cbb&email=cevdetmelih@gmail.com",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "changeEmail"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "62dac0174c0715323e193cbb"
+                },
+                {
+                  "key": "email",
+                  "value": "cevdetmelih@gmail.com"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "addFavoriteList",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/user/addFavoriteList?userId=62dace0978a7907c81532738&productId=62daff54d1ba7f5818dbfaed",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "user",
+                "addFavoriteList"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "62dace0978a7907c81532738"
+                },
+                {
+                  "key": "productId",
+                  "value": "62daff54d1ba7f5818dbfaed"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteUser",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/user/deleteUser?userId=62da9e795d9175260638dfce",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "user",
+                "deleteUser"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "62da9e795d9175260638dfce"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ShoppingCart",
+      "item": [
+        {
+          "name": "createShoppingCart",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userId\":\"62dc1874cf4cc45323bec79d\"\r\n\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/shoppingCart/createShoppingCart",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "shoppingCart",
+                "createShoppingCart"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getShoppingCartProductList",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/shoppingCart/getShoppingCartProductList?shoppingCartId=62dc187dcf4cc45323bec79e",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "shoppingCart",
+                "getShoppingCartProductList"
+              ],
+              "query": [
+                {
+                  "key": "shoppingCartId",
+                  "value": "62dc187dcf4cc45323bec79e"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "removeItemShoppingCart",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/shoppingCart/removeItemShoppingCart?shoppingCartId=62dc187dcf4cc45323bec79e&productId=62dc17edcf4cc45323bec79c&count=3",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "shoppingCart",
+                "removeItemShoppingCart"
+              ],
+              "query": [
+                {
+                  "key": "shoppingCartId",
+                  "value": "62dc187dcf4cc45323bec79e"
+                },
+                {
+                  "key": "productId",
+                  "value": "62dc17edcf4cc45323bec79c"
+                },
+                {
+                  "key": "count",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "addProductToShoppingCart",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/shoppingCart/addProductToShoppingCart?shoppingCartId=62dc187dcf4cc45323bec79e&productId=62dc17edcf4cc45323bec79c&count=2",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "shoppingCart",
+                "addProductToShoppingCart"
+              ],
+              "query": [
+                {
+                  "key": "shoppingCartId",
+                  "value": "62dc187dcf4cc45323bec79e"
+                },
+                {
+                  "key": "productId",
+                  "value": "62dc17edcf4cc45323bec79c"
+                },
+                {
+                  "key": "count",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "resetCart",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/shoppingCart/resetCart?shoppingCartId=62dc187dcf4cc45323bec79e",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "shoppingCart",
+                "resetCart"
+              ],
+              "query": [
+                {
+                  "key": "shoppingCartId",
+                  "value": "62dc187dcf4cc45323bec79e"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "createProduct",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"categoryId\": \"62dc17c9cf4cc45323bec79b\",\r\n    \"name\" : \"tşört\",\r\n    \"price\" : 140,\r\n    \"description\": \"polo yaka beyaz\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/product/createProduct",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "product",
+                "createProduct"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getProduct",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/product/getProduct?productId=62dc17edcf4cc45323bec79c",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "product",
+                "getProduct"
+              ],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "62dc17edcf4cc45323bec79c"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllProduct",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/product/getAllProduct",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "product",
+                "getAllProduct"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "changeProductName",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/product/changeProductName?productId=62dc17edcf4cc45323bec79c&productName=uzun kollo polo",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "product",
+                "changeProductName"
+              ],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "62dc17edcf4cc45323bec79c"
+                },
+                {
+                  "key": "productName",
+                  "value": "uzun kollo polo"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "changeProductPrice",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/product/changeProductPrice?productId=62daff54d1ba7f5818dbfaed&productPrice=25000",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "product",
+                "changeProductPrice"
+              ],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "62daff54d1ba7f5818dbfaed"
+                },
+                {
+                  "key": "productPrice",
+                  "value": "25000"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "changeProductCategory",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/product/changeProductCategory?productId=62d941f1df77443e0cbc12e7&categoryId=62d9412ddf77443e0cbc12e6",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "product",
+                "changeProductCategory"
+              ],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "62d941f1df77443e0cbc12e7"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "62d9412ddf77443e0cbc12e6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteProduct",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/product/deleteProduct?productId=62d941fbdf77443e0cbc12e8",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "product",
+                "deleteProduct"
+              ],
+              "query": [
+                {
+                  "key": "productId",
+                  "value": "62d941fbdf77443e0cbc12e8"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "createOrder",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/order/createOrder?shoppingCartId=62dc187dcf4cc45323bec79e&deliveryAddressId=62dc1a8ecf4cc45323bec7a0&invoiceAddressId=62dc1a82cf4cc45323bec79f",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "order",
+                "createOrder"
+              ],
+              "query": [
+                {
+                  "key": "shoppingCartId",
+                  "value": "62dc187dcf4cc45323bec79e"
+                },
+                {
+                  "key": "deliveryAddressId",
+                  "value": "62dc1a8ecf4cc45323bec7a0"
+                },
+                {
+                  "key": "invoiceAddressId",
+                  "value": "62dc1a82cf4cc45323bec79f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOrderProductList",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/order/getOrderProductList?orderId=62dc1bc8cf4cc45323bec7a3",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "order",
+                "getOrderProductList"
+              ],
+              "query": [
+                {
+                  "key": "orderId",
+                  "value": "62dc1bc8cf4cc45323bec7a3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "editOrderAddress",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/order/editOrderAddress?orderId&userId&deliveryAddressId&invoiceAddressId",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "order",
+                "editOrderAddress"
+              ],
+              "query": [
+                {
+                  "key": "orderId",
+                  "value": null
+                },
+                {
+                  "key": "userId",
+                  "value": null
+                },
+                {
+                  "key": "deliveryAddressId",
+                  "value": null
+                },
+                {
+                  "key": "invoiceAddressId",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "completeOrder",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/order/completeOrder?orderId=62dc1ac9cf4cc45323bec7a1",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "order",
+                "completeOrder"
+              ],
+              "query": [
+                {
+                  "key": "orderId",
+                  "value": "62dc1ac9cf4cc45323bec7a1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancelOrder",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/order/cancelOrder?orderId=62dc1bc8cf4cc45323bec7a3",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "order",
+                "cancelOrder"
+              ],
+              "query": [
+                {
+                  "key": "orderId",
+                  "value": "62dc1bc8cf4cc45323bec7a3"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "createCategory",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"giyim\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/category/createCategory",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "category",
+                "createCategory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllCategory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/category/getAllCategory",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "category",
+                "getAllCategory"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Address",
+      "item": [
+        {
+          "name": "createAddress",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"şems ev\",\r\n    \"country\": \"TR\",\r\n    \"city\": \"istanbul\",\r\n    \"description\": \"üsküdar\",\r\n    \"userId\":\"62dc1874cf4cc45323bec79d\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/address/createAddress",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "address",
+                "createAddress"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "editAddress",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/address/editAddress?addressId=62daa722a25fee2cbb773e11&country=TR&city=İstanbul&description=Mecidiyeköy",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "address",
+                "editAddress"
+              ],
+              "query": [
+                {
+                  "key": "addressId",
+                  "value": "62daa722a25fee2cbb773e11"
+                },
+                {
+                  "key": "country",
+                  "value": "TR"
+                },
+                {
+                  "key": "city",
+                  "value": "İstanbul"
+                },
+                {
+                  "key": "description",
+                  "value": "Mecidiyeköy"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteAddress",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://shoppingtracking.herokuapp.com/address/deleteAddress?addressId=62daa722a25fee2cbb773e11",
+              "protocol": "https",
+              "host": [
+                "shoppingtracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "address",
+                "deleteAddress"
+              ],
+              "query": [
+                {
+                  "key": "addressId",
+                  "value": "62daa722a25fee2cbb773e11"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
