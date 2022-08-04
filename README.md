@@ -12,6 +12,12 @@ It offers additional discounts to encourage shopping during order completion.
 
 ---
 
+### Postman Collections
+
+[Click here for postman collection.zip](https://github.com/erbilcolak90/shopping/files/9258827/Shopping.postman_collection.zip)
+
+[json examples](https://github.com/erbilcolak90/shopping/blob/main/jsonFormatExamples.json)
+
 
 ## Entities
 
